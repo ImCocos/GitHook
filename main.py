@@ -21,7 +21,7 @@ def site():
         
         return 'ok'
 
-    app.run(debug=False)
+    app.run(host='0.0.0.0', debug=False)
 
 
 def bot():
