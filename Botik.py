@@ -44,7 +44,7 @@ class Botik:
                     
                     message_text = f'{hallo_part}\n\n'
                     message_text += commit_part
-                    message_text += 'Пока всё, ботяги, а также работяги...'
+                    message_text += 'Пока всё, ботяги, а также работяги...\n\n'
                     message_text += f'Репозиторий - {url}'
                     
 
