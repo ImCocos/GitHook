@@ -4,6 +4,7 @@ from flask import json
 from threading import Thread
 from Botik import Botik
 
+
 def site():
     app = Flask(__name__)
 
