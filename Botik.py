@@ -32,18 +32,20 @@ class Botik:
                         info = dict(json.loads(f.read()))
                     
                     hallo_part = random.choice(git_hallos)
-                    commit_part = 'Коммиты:'
+                    commit_part = 'Коммиты:\n'
                     for commit in info['commits']:
                         commit_part += f'   Коммит от {commit["committer"]["name"]}:\n'
-                        commit_part += f'       Дата: {commit["timestamp"]}\n'
+                        commit_part += f'       Дата: {commit["timestamp"][:-6]}\n'
                         commit_part += f'       Сообщене: {commit["message"]}\n'
                         commit_part += f'       Добавлено файлов: {len(commit["added"])}\n'
                         commit_part += f'       Изменено файлов: {len(commit["modified"])}\n'
                         commit_part += f'       Удалено файлов: {len(commit["removed"])}\n\n'
+                    url = info['repository']['html_url']
                     
                     message_text = f'{hallo_part}\n\n'
                     message_text += commit_part
                     message_text += 'Пока всё, ботяги, а также работяги...'
+                    message_text += f'Репозиторий - {url}'
                     
 
 
