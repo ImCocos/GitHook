@@ -47,8 +47,6 @@ class Botik:
                     message_text += 'Пока всё, ботяги, а также работяги...\n\n'
                     message_text += f'Репозиторий - {url}'
                     
-
-
                     await bot.send_message(chat_id=-1001869856367, text=message_text)
                     with open('SEND_GIT_INFO.txt', 'w') as f:
                         f.write('0')
