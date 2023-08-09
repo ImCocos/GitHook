@@ -3,9 +3,9 @@ from aiogram import Bot, Dispatcher, executor, types
 import asyncio
 import random
 
-git_hallos = ['Вы не поверите! Это же сам @ImCocos сделал коммит!!!',
-              'Офигеть! Великий прогер всея Руси сделал очередной коммит...',
-              'Вот это да, отвлекся от игр и сделал коммит!',
+git_hallos = ['Вы не поверите! Это же сам @ImCocos сделал обнову репозитория!!!',
+              'Офигеть! Великий прогер всея Руси сделал очередную обнову репозитория...',
+              'Вот это да, отвлекся от игр и сделал обнову репозитория!',
             ]
 
 loop = asyncio.new_event_loop()
@@ -31,10 +31,21 @@ class Botik:
                     with open('COMMIT_INFO.json', 'rb') as f:
                         info = dict(json.loads(f.read()))
                     
-                    message_text = random.choice(git_hallos) + '\n\n'
-                    message_text += 'Коммит по прекраснейшему репозиторию:\n' + info['repository']['svn_url'] + '\n'
-                    message_text += f'Коммит был совершен {info["repository"]["owner"]["login"]} в {str(info["repository"]["created_at"])}'.replace("T", ";").replace("Z", "")
-                    message_text += '.'
+                    hallo_part = random.choice(git_hallos)
+                    commit_part = 'Коммиты:'
+                    for commit in info['commits']:
+                        commit_part += f'   Коммит от {commit["committer"]["name"]}:\n'
+                        commit_part += f'       Дата: {commit["timestamp"]}\n'
+                        commit_part += f'       Сообщене: {commit["message"]}\n'
+                        commit_part += f'       Добавлено файлов: {len(commit["added"])}\n'
+                        commit_part += f'       Изменено файлов: {len(commit["modified"])}\n'
+                        commit_part += f'       Удалено файлов: {len(commit["removed"])}\n\n'
+                    
+                    message_text = f'{hallo_part}\n\n'
+                    message_text += commit_part
+                    message_text += 'Пока всё, ботяги, а также работяги...'
+                    
+
 
                     await bot.send_message(chat_id=-1001869856367, text=message_text)
                     with open('SEND_GIT_INFO.txt', 'w') as f:
