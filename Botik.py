@@ -36,8 +36,6 @@ class Botik:
                     message_text += f'Коммит был совершен {info["repository"]["owner"]["login"]} в {info["repository"]["created_at"]}'.replace("T", ";").replace("Z", "")
                     message_text += '.'
 
-
-
                     await bot.send_message(chat_id=-1001869856367, text=message_text)
                     with open('SEND_GIT_INFO.txt', 'w') as f:
                         f.write('0')
