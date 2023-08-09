@@ -33,9 +33,10 @@ class Botik:
                     
                     message_text = random.choice(git_hallos) + '\n\n'
                     message_text += 'Коммит по прекраснейшему репозиторию:\n' + info['repository']['svn_url'] + '\n'
-                    message_text += f'Коммит был совершен {info["repository"]["owner"]["login"]} в {info["repository"]["created_at"].replace("T", ";").replace("Z", "")}'
+                    message_text += f'Коммит был совершен {info["repository"]["owner"]["login"]} в ' + str(info["repository"]["created_at"]).replace("T", ";").replace("Z", "")
                     message_text += '.'
-                    
+
+
 
                     await bot.send_message(chat_id=-1001869856367, text=message_text)
                     with open('SEND_GIT_INFO.txt', 'w') as f:
