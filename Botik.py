@@ -32,10 +32,8 @@ class Botik:
                         info = dict(json.loads(f.read()))
                     
                     message_text = random.choice(git_hallos) + '\n\n'
-                    for key in info:
-                        message_text += key + ': ' + info[key] + '\n'
-                    
-                    message_text = message_text[:-2]
+                    message_text += 'Коммит по прекраснейшему репозиторию:\n' + info['hook']['config']['url'] + '\n'
+                    message_text += f'Коммит был совершен {info["repository"]["owner"]["login"]} в {info["repository"]["created_at"]}'
                     message_text += '.'
 
                     await bot.send_message(chat_id=-1001869856367, text=message_text)
