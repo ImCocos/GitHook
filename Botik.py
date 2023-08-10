@@ -5,7 +5,8 @@ import random
 import time
 
 
-send_time = True
+hours = [i for i in range(24)]
+
 
 git_hallos = ['Вы не поверите! Это же кто-то сделал обнову репозитория!!!',
               'Офигеть! Великий прогер всея Руси сделал очередную обнову репозитория...',
@@ -20,6 +21,8 @@ class Botik:
     def __init__(self, api_token):
         self.bot = Bot(token=api_token)
         self.dispatcher = Dispatcher(self.bot)
+        self.flag1 = True
+        self.flag2 = True
     
     def run(self):
         print('##### Bot started running ##### ')
@@ -29,9 +32,20 @@ class Botik:
         @dp.message_handler(lambda message: 1 == 2)
         async def start(message: types.Message):
             while True:
+
+
                 cur_hours = time.localtime().tm_hour
-                if cur_hours == 12:
-                    await bot.send_message(chat_id=-1001869856367, text=f'Сейчас {cur_hours} часов!')
+                my_hours = hours[(cur_hours + 2) - (((cur_hours + 2) // 24) * 24)]
+                if my_hours == 8 and self.flag1:
+                    await bot.send_message(chat_id=-1001869856367, text=f'С добрым утром, ботяги, а также, работяги!\nПродуктивного дня <3')
+                    self.flag1 = False
+                    self.flag2 = True
+                elif my_hours == 20 and self.flag2:
+                    await bot.send_message(chat_id=-1001869856367, text=f'С добрым вечером, ботяги, а также, работяги!\nПриятных снов <3')
+                    self.flag1 = True
+                    self.flag2 = False
+
+
                 with open('SEND_GIT_INFO.txt', 'r') as f:
                     cgi = f.read()
                 send = True if cgi == '1' else False
