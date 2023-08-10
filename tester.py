@@ -1,6 +1,4 @@
-import json
-import pprint
+import time
 
 
-dct = dict(json.loads(open('smth.json', 'rb').read()))
-pprint.pprint(dct)
+print(time.localtime().tm_hour)

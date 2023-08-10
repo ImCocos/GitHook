@@ -2,7 +2,10 @@ import json
 from aiogram import Bot, Dispatcher, executor, types
 import asyncio
 import random
+import time
 
+
+send_time = True
 
 git_hallos = ['Вы не поверите! Это же сам @ImCocos сделал обнову репозитория!!!',
               'Офигеть! Великий прогер всея Руси сделал очередную обнову репозитория...',
@@ -26,6 +29,9 @@ class Botik:
         @dp.message_handler(lambda message: 1 == 2)
         async def start(message: types.Message):
             while True:
+                cur_hours = time.localtime().tm_hour
+                if cur_hours == 12:
+                    await bot.send_message(chat_id=-1001869856367, text=f'Сейчас {cur_hours} часов!')
                 with open('SEND_GIT_INFO.txt', 'r') as f:
                     cgi = f.read()
                 send = True if cgi == '1' else False
@@ -36,12 +42,12 @@ class Botik:
                     hallo_part = random.choice(git_hallos)
                     commit_part = 'Коммиты:\n'
                     for commit in info['commits']:
-                        commit_part += f'   Коммит от {commit["committer"]["name"]}:\n'
-                        commit_part += f'       Дата: {commit["timestamp"][:-6]}\n'
-                        commit_part += f'       Сообщене: {commit["message"]}\n'
-                        commit_part += f'       Добавлено файлов: {len(commit["added"])}\n'
-                        commit_part += f'       Изменено файлов: {len(commit["modified"])}\n'
-                        commit_part += f'       Удалено файлов: {len(commit["removed"])}\n\n'
+                        commit_part += f'>Коммит от {commit["committer"]["name"]}:\n'
+                        commit_part += f' -Дата:\n   {commit["timestamp"][:-6]}\n'
+                        commit_part += f' -Сообщене:\n   {commit["message"]}\n'
+                        commit_part += f' -Добавлено файлов:\n   {len(commit["added"])}\n'
+                        commit_part += f' -Изменено файлов:\n   {len(commit["modified"])}\n'
+                        commit_part += f' -Удалено файлов:\n   {len(commit["removed"])}\n\n'
                     url = info['repository']['html_url']
                     
                     message_text = f'{hallo_part}\n\n'
