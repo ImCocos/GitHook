@@ -43,11 +43,11 @@ class Botik:
                     commit_part = 'Коммиты:\n'
                     for commit in info['commits']:
                         commit_part += f'>Коммит от {commit["committer"]["name"]}:\n'
-                        commit_part += f' -Дата:\n   {commit["timestamp"][:-6]}\n'
-                        commit_part += f' -Сообщене:\n   {commit["message"]}\n'
-                        commit_part += f' -Добавлено файлов:\n   {len(commit["added"])}\n'
-                        commit_part += f' -Изменено файлов:\n   {len(commit["modified"])}\n'
-                        commit_part += f' -Удалено файлов:\n   {len(commit["removed"])}\n\n'
+                        commit_part += f' -Дата:\n    {commit["timestamp"][:-6]}\n'
+                        commit_part += f' -Сообщене:\n    {commit["message"]}\n'
+                        commit_part += f' -Добавлено файлов: {len(commit["added"])}\n'
+                        commit_part += f' -Изменено файлов: {len(commit["modified"])}\n'
+                        commit_part += f' -Удалено файлов: {len(commit["removed"])}\n\n'
                     url = info['repository']['html_url']
                     
                     message_text = f'{hallo_part}\n\n'
