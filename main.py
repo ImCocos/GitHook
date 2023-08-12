@@ -1,10 +1,4 @@
 import pip
-
-
-pip.main(['install', 'flask'])
-pip.main(['install', 'requests'])
-
-
 from flask import Flask
 from flask import request
 from flask import json
