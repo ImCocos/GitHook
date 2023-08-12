@@ -1,3 +1,10 @@
+import pip
+
+
+pip.main(['install', 'flask'])
+pip.main(['install', 'requests'])
+
+
 from flask import Flask
 from flask import request
 from flask import json
@@ -34,16 +41,18 @@ def bot():
 
 def keep_alive():
     ak= AliveKeeper(ping_url='https://githook.codimcocos.repl.co')
-    ak.keep_alive()
+    ak.keep_alive(1800)
 
 
 if __name__ == '__main__':
     t1 = Thread(target=site)
     t2 = Thread(target=keep_alive)
     t3 = Thread(target=keep_alive)
+
     t1.start()
     t2.start()
     t3.start()
+
     t1.join()
     t2.join()
     t3.join()
