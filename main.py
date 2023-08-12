@@ -47,12 +47,8 @@ def keep_alive():
 if __name__ == '__main__':
     t1 = Thread(target=site)
     t2 = Thread(target=keep_alive)
-    t3 = Thread(target=keep_alive)
 
     t1.start()
     t2.start()
-    t3.start()
 
-    t1.join()
-    t2.join()
-    t3.join()
+    bot()
