@@ -1,4 +1,3 @@
-import pip
 from flask import Flask
 from flask import request
 from flask import json
