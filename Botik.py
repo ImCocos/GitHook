@@ -24,6 +24,7 @@ class Botik:
         self.flag1 = True
         self.flag2 = True
     
+    
     def run(self):
         print('##### Bot started running ##### ')
         bot = self.bot
