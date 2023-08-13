@@ -61,11 +61,13 @@ class Server:
                 cur_hours = time.localtime().tm_hour
                 my_hours = hours[(cur_hours + 2) - (((cur_hours + 2) // 24) * 24)]
                 if my_hours == 10 and self.flag1:
-                    await bot.send_message(chat_id=-1001869856367, text=f'С добрым утром, ботяги, а также, работяги!\nПродуктивного дня <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}')
+                    await bot.send_message(chat_id=-1001869856367, 
+                                           text=f'С добрым утром, ботяги, а также, работяги!\nПродуктивного дня <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}')
                     self.flag1 = False
                     self.flag2 = True
                 elif my_hours == 22 and self.flag2:
-                    await bot.send_message(chat_id=-1001869856367, text=f'С добрым вечером, ботяги, а также, работяги!\nПриятных снов <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}')
+                    await bot.send_message(chat_id=-1001869856367, 
+                                           text=f'С добрым вечером, ботяги, а также, работяги!\nПриятных снов <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}')
                     self.flag1 = True
                     self.flag2 = False
 
@@ -76,7 +78,7 @@ class Server:
                     hallo_part = random.choice(git_hallos)
                     commit_part = 'Коммиты:\n'
                     for commit in info['commits']:
-                        commit_part += f'# Коммит от <a href="https://github.com/{commit["committer"]["name"]}">{commit["committer"]["name"]}</a>:\n'
+                        commit_part += f'Коммит от <a href="https://github.com/{commit["committer"]["name"]}">{commit["committer"]["name"]}</a>:\n'
                         commit_part += f' - Дата:\n    {commit["timestamp"][:-6]}\n'
                         commit_part += f' - Сообщение:\n    {commit["message"]}\n'
                         commit_part += f' - Добавлено файлов: {len(commit["added"])}\n'
