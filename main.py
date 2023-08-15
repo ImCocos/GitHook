@@ -9,6 +9,7 @@ from threading import Thread, Event
 
 
 class Server:
+    
     def __init__(self):
         self.flag = Event()
 
