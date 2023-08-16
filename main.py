@@ -80,8 +80,8 @@ class Server:
                     commit_part = 'Коммиты:\n'
                     for commit in info['commits']:
                         commit_part += f'Коммит от <a href="https://github.com/{commit["committer"]["name"]}">{commit["committer"]["name"]}</a>:\n'
-                        commit_part += f' - Дата:\n    {commit["timestamp"][:-6]}\n'
-                        commit_part += f' - Сообщение:\n    {commit["message"]}\n'
+                        commit_part += f' - Дата:\n        {commit["timestamp"][:-6]}\n'
+                        commit_part += f' - Сообщение:\n        {commit["message"]}\n'
                         commit_part += f' - Добавлено файлов: {len(commit["added"])}\n'
                         commit_part += f' - Изменено файлов: {len(commit["modified"])}\n'
                         commit_part += f' - Удалено файлов: {len(commit["removed"])}\n\n'
@@ -90,7 +90,7 @@ class Server:
                     message_text = f'{hallo_part}\n\n'
                     message_text += commit_part
                     message_text += 'Пока всё, ботяги, а также работяги...\n\n'
-                    message_text += f'<a href="{url}">Репозиторий</a>'
+                    message_text += f'Репозиторий - <a href="{url}">{info["repository"]["name"]}</a>'
                     
                     await bot.send_message(chat_id=-1001869856367, text=message_text, parse_mode='HTML')
                     self.flag.clear()
