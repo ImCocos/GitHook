@@ -9,7 +9,6 @@ import json
 from threading import Thread, Event
 import requests
 
-print(time.localtime().tm_hour)
 
 api_weather_url = f'https://api.openweathermap.org/data/2.5/weather?lat=55.751244&lon=37.618423&appid=594156179360808d788f634d8738d7a8'
 
@@ -67,9 +66,8 @@ class Server:
         async def start(message: types.Message):
             while True:
 
-                cur_hours = time.localtime().tm_hour
-                my_hours = hours[(cur_hours + 2) - (((cur_hours + 2) // 24) * 24)]
-                if my_hours == 12 and self.flag1:
+                my_hours = time.localtime().tm_hour
+                if my_hours == 10 and self.flag1:
                     weather_data = requests.get(api_weather_url).content
                     weather_data = json.loads(weather_data)
 
@@ -93,7 +91,7 @@ class Server:
                                         caption=f'С добрым утром, ботяги, а также, работяги!\nПродуктивного дня <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}\n{weather_text}')
                     self.flag1 = False
                     self.flag2 = True
-                elif my_hours == 24 and self.flag2:
+                elif my_hours == 22 and self.flag2:
                     await bot.send_message(chat_id=-1001869856367, 
                                            text=f'С добрым вечером, ботяги, а также, работяги!\nПриятных снов <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}')
                     self.flag1 = True
