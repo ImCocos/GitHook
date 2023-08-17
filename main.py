@@ -78,7 +78,7 @@ class Server:
             weather_text += f'  Влажность: {humidity}\n'
             weather_text += f'  Скорость ветра: {wind_speed}м/с\n'
 
-            await bot.send_message(chat_id=message.chat_id, text=weather_text)
+            await bot.reply(text=weather_text)
 
         @dp.message_handler(lambda message: 1 == 2)
         async def start(message: types.Message):
