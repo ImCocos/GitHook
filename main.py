@@ -9,6 +9,7 @@ import json
 from threading import Thread, Event
 import requests
 
+print(time.localtime().tm_hour)
 
 api_weather_url = f'https://api.openweathermap.org/data/2.5/weather?lat=55.751244&lon=37.618423&appid=594156179360808d788f634d8738d7a8'
 
