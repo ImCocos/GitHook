@@ -138,7 +138,7 @@ class Server:
                     await bot.send_message(chat_id=-1001869856367, text=message_text, parse_mode='HTML')
                     self.flag.clear()
         
-        executor.start_polling(dispatcher=dp, skip_updates=True, on_startup=start)
+        executor.start_polling(dispatcher=dp, skip_updates=True,)
     
     def run(self):
         t1 = Thread(target=self.site)
