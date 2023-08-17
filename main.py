@@ -36,7 +36,6 @@ class Server:
 
 
     def bot(self):
-
         hours = [i for i in range(24)]
 
 
