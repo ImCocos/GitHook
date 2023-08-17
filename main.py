@@ -1,3 +1,4 @@
+import os
 import asyncio
 import random
 import time
@@ -57,6 +58,10 @@ class Server:
         bot = bot
         dp = dispatcher
 
+        @dp.message_handler(commands=['test'])
+        async def test(message: types.Message):
+            pass
+
         @dp.message_handler(lambda message: 1 == 2)
         async def start(message: types.Message):
             while True:
@@ -82,8 +87,9 @@ class Server:
                     weather_text += f'  Влажность: {humidity}\n'
                     weather_text += f'  Скорость ветра: {wind_speed}м/с\n'
 
-                    await bot.send_message(chat_id=-1001869856367, 
-                                           text=f'С добрым утром, ботяги, а также, работяги!\nПродуктивного дня <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}\n{weather_text}')
+                    await bot.send_photo(chat_id=-1001869856367, 
+                                        photo=open(f'media/good_morning/{random.randint(8073, 8136)}.jpg', 'rb'), 
+                                        caption=f'С добрым утром, ботяги, а также, работяги!\nПродуктивного дня <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}\n{weather_text}')
                     self.flag1 = False
                     self.flag2 = True
                 elif my_hours == 24 and self.flag2:
