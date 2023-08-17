@@ -67,7 +67,7 @@ class Server:
             while True:
 
                 my_hours = time.localtime().tm_hour
-                if my_hours >= 10 and self.flag1:
+                if my_hours == 10 and self.flag1:
                     weather_data = requests.get(api_weather_url).content
                     weather_data = json.loads(weather_data)
 
@@ -91,7 +91,7 @@ class Server:
                                         caption=f'С добрым утром, ботяги, а также, работяги!\nПродуктивного дня <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}\n{weather_text}')
                     self.flag1 = False
                     self.flag2 = True
-                elif my_hours >= 22 and self.flag2:
+                elif my_hours == 22 and self.flag2:
                     await bot.send_message(chat_id=-1001869856367, 
                                            text=f'С добрым вечером, ботяги, а также, работяги!\nПриятных снов <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}')
                     self.flag1 = True
