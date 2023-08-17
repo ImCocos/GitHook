@@ -20,4 +20,4 @@ for i in range(8073, 8174):
         if f[0]:
             print(f'    Image {i} loaded')
         else:
-            print(f'I   mage {i} not loaded with code {f[1]}')
+            print(f'    Image {i} not loaded with code {f[1]}')
