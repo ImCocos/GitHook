@@ -1,23 +1,16 @@
 import requests
-from bs4 import BeautifulSoup
 
 
-def load(url):
-    response = requests.get(url=url)
+s = 0
+for i in range(811, 912):
+    url = f'https://dobrogoutra.ru/noname/imgbig/dobrogoutra_ru_10{i}.jpg'
+
+    response = requests.get(url)
+
     if response.status_code == 200:
-        with open(f'media/good_morning/{i}.jpg', 'wb') as f:
+        with open(f'media/good_evening/{s}.jpg', 'wb') as f:
             f.write(response.content)
-        return (True, response.status_code)
+        print(f'Image {s}.jpg({i}) loaded')
+        s += 1
     else:
-        return (False, response.status_code)
-
-
-for i in range(8073, 8174):
-    print(f'Trying load image {i}')
-    f = (False,)
-    while not f[0]:
-        f = load(f'https://photovords.ru/pics_max/photowords_ru_{i}.jpg')
-        if f[0]:
-            print(f'    Image {i} loaded')
-        else:
-            print(f'    Image {i} not loaded with code {f[1]}')
+        print(f'Image {i} not loaded - {response.status_code}\n     url - {url}')

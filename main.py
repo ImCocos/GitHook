@@ -92,8 +92,9 @@ class Server:
                     self.flag1 = False
                     self.flag2 = True
                 elif my_hours == 22 and self.flag2:
-                    await bot.send_message(chat_id=-1001869856367, 
-                                           text=f'С добрым вечером, ботяги, а также, работяги!\nПриятных снов <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}')
+                    await bot.send_photo(chat_id=-1001869856367, 
+                                        caption=f'С добрым вечером, ботяги, а также, работяги!\nПриятных снов <3\nНас пока что {await bot.get_chat_member_count(chat_id=-1001869856367)}',
+                                        photo=open(f'media/good_evening/{random.randint(0, 74)}.jpg', 'rb'))
                     self.flag1 = True
                     self.flag2 = False
 
