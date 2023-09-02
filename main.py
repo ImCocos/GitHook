@@ -10,7 +10,7 @@ from threading import Thread, Event
 import requests
 
 
-api_weather_url = f'https://api.openweathermap.org/data/2.5/weather?lat=55.751244&lon=37.618423&appid=594156179360808d788f634d8738d7a8'
+api_weather_url = f'https://api.openweathermap.org/data/2.5/weather?lat=55.751244&lon=37.618423&appid=594156179360808d788f634d8738d7a8&lang=ru'
 
 class Server:
     def __init__(self):
@@ -44,6 +44,7 @@ class Server:
               'Офигеть! Великий прогер всея Руси сделал очередную обнову репозитория...',
               'Вот это да, отвлекся от игр и сделал обнову репозитория!',
               'ЧТОООООО??!!? Обновил репо???!?',
+              'Да ладно!, это же пуш репозитория!',
             ]
 
         loop = asyncio.new_event_loop()
@@ -77,14 +78,16 @@ class Server:
                     max_temp = round(float(weather_data['main']['temp_max']) - 273, 2)
                     min_temp = round(float(weather_data['main']['temp_min']) - 273, 2)
                     wind_speed = round(float(weather_data['wind']['speed']), 2)
+                    state = weather_data['weather'][0]['description']
 
                     weather_text = f'Погода на сегодня:\n'
+                    weather_text += f'  Состояние: {state}'
                     weather_text += f'  Температура: {temp}°С\n'
                     weather_text += f'  Температура(макс): {max_temp}°С\n'
                     weather_text += f'  Температура(мин): {min_temp}°С\n'
                     weather_text += f'  Давление: {pressure}мм рт.ст.\n'
                     weather_text += f'  Влажность: {humidity}\n'
-                    weather_text += f'  Скорость ветра: {wind_speed}м/с\n'
+                    weather_text += f'  Скорость ветра: {wind_speed}м/с\n.'
 
                     await bot.send_photo(chat_id=-1001869856367, 
                                         photo=open(f'media/good_morning/{random.randint(8073, 8136)}.jpg', 'rb'), 
