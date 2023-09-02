@@ -12,6 +12,7 @@ import requests
 
 api_weather_url = f'https://api.openweathermap.org/data/2.5/weather?lat=55.751244&lon=37.618423&appid=594156179360808d788f634d8738d7a8&lang=ru'
 
+
 class Server:
     def __init__(self):
         self.flag = Event()
