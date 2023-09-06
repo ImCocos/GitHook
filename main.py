@@ -82,7 +82,7 @@ class Server:
                     state = weather_data['weather'][0]['description']
 
                     weather_text = f'Погода на сегодня:\n'
-                    weather_text += f'  Состояние: {state}'
+                    weather_text += f'  Состояние:\n  {state}\n'
                     weather_text += f'  Температура: {temp}°С\n'
                     weather_text += f'  Температура(макс): {max_temp}°С\n'
                     weather_text += f'  Температура(мин): {min_temp}°С\n'
